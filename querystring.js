@@ -22,6 +22,27 @@ define(function() {
   }
 
   return {
+    /**
+     * Serialize an object to a query string.
+     *
+     * Optionally override the default separator ('&') and assignment ('=')
+     * characters.
+     *
+     * Examples:
+     *
+     *     querystring.stringify({ foo: 'bar', baz: ['qux', 'quux'], corge: '' })
+     *     // returns
+     *     'foo=bar&baz=qux&baz=quux&corge='
+     *
+     *     querystring.stringify({foo: 'bar', baz: 'qux'}, ';', ':')
+     *     // returns
+     *     'foo:bar;baz:qux'
+     *
+     * @param {Object} obj
+     * @param {String} sep
+     * @param {String} eq
+     * @api public
+     */
     stringify: function(obj, sep, eq, name) {
       sep = sep || '&';
       eq = eq || '=';
@@ -48,6 +69,28 @@ define(function() {
              encodeURIComponent(stringifyPrimitive(obj));
     },
   
+    /**
+     * Deserialize a query string to an object.
+     *
+     * Optionally override the default separator ('&') and assignment ('=')
+     * characters.
+     *
+     * Options object may contain maxKeys property (equal to 1000 by default),
+     * it'll be used to limit processed keys. Set it to 0 to remove key count
+     * limitation.
+     *
+     * Examples:
+     *
+     *     querystring.parse('foo=bar&baz=qux&baz=quux&corge')
+     *     // returns
+     *     { foo: 'bar', baz: ['qux', 'quux'], corge: '' }
+     *
+     * @param {String} qs
+     * @param {String} sep
+     * @param {String} eq
+     * @param {Object} options
+     * @api public
+     */
     parse: function(qs, sep, eq, options) {
       sep = sep || '&';
       eq = eq || '=';
