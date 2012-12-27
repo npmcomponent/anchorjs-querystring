@@ -171,7 +171,76 @@ function(querystring) {
         });
       });
     });
-  
+    
+    describe('nested qs-in-qs', function() {
+      it('should parse as expected', function() {
+        var f = querystring.parse('a=b&q=x%3Dy%26y%3Dz');
+        f.q = querystring.parse(f.q);
+        expect(f).to.deep.equal({ a: 'b', q: { x: 'y', y: 'z' } });
+      });
+      
+      it('should stringify as expected', function() {
+        var f = querystring.stringify({
+          a: 'b',
+          q: querystring.stringify({
+            x: 'y',
+            y: 'z'
+          })
+        });
+        expect(f).to.equal('a=b&q=x%3Dy%26y%3Dz');
+      });
+    });
+    
+    describe('nested in colon', function() {
+      it('should parse as expected', function() {
+        var f = querystring.parse('a:b;q:x%3Ay%3By%3Az', ';', ':');
+        f.q = querystring.parse(f.q, ';', ':');
+        expect(f).to.deep.equal({ a: 'b', q: { x: 'y', y: 'z' } });
+      });
+      
+      it('should stringify as expected', function() {
+        var f = querystring.stringify({
+          a: 'b',
+          q: querystring.stringify({
+            x: 'y',
+            y: 'z'
+          }, ';', ':')
+        }, ';', ':');
+        expect(f).to.equal('a:b;q:x%3Ay%3By%3Az');
+      });
+    });
+    
+    describe('undefined', function() {
+      it('should not throw', function() {
+        expect(function() {
+          querystring.parse(undefined);
+        }).to.not.throw();
+      });
+      
+      it('should parse as expected', function() {
+        expect({}).to.deep.equal(querystring.parse());
+      });
+    });
+    
+    describe('limiting', function() {
+      it('should parse as expected', function() {
+        expect(Object.keys(querystring.parse('a=1&b=1&c=1', null, null, { maxKeys: 1 }))).to.have.length(1);
+      });
+    });
+    
+    describe('removing limit', function() {
+      var query = {},
+          url;
+    
+      for (var i = 0; i < 2000; i++) query[i] = i;
+    
+      url = querystring.stringify(query);
+    
+      it('should parse as expected', function() {
+        expect(Object.keys(querystring.parse(url, null, null, { maxKeys: 0 }))).to.have.length(2000);
+      });
+    });
+    
   });
   
   return { name: "test.querystring" }
