@@ -38,7 +38,7 @@ querystring.parse('foo=bar&baz=qux&baz=quux&corge')
 { foo: 'bar', baz: ['qux', 'quux'], corge: '' }
 ```
 
-## Interfaces
+## Implements
 
 This module conforms to the interface exported by Node's [Query String](http://nodejs.org/api/querystring.html)
 module.
