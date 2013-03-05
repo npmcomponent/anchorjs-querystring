@@ -1,6 +1,6 @@
 {
   "name": "querystring",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Query string module for Anchor.js.",
   "repository": {
     "type": "git",
