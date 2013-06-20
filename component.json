@@ -1,0 +1,11 @@
+{
+  "name": "querystring",
+  "version": "0.0.1",
+  "description": "Utilities for dealing with query strings.",
+  "repo": "anchorjs/querystring",
+  "main": "querystring.js",
+  "scripts": [
+    "querystring.js"
+  ],
+  "license": "MIT"
+}
