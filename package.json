@@ -1,40 +1,8 @@
 {
-  "name": "querystring",
-  "version": "0.0.1",
+  "name": "anchorjs-querystring",
   "description": "Utilities for dealing with query strings.",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/anchorjs/querystring.git"
-  },
-  "bugs": {
-    "url": "http://github.com/anchorjs/querystring/issues"
-  },
-  "author": {
-    "name": "Jared Hanson",
-    "email": "jaredhanson@gmail.com",
-    "url": "http://www.jaredhanson.net/"
-  },
-  "licenses": [ {
-    "type": "MIT",
-    "url": "http://www.opensource.org/licenses/MIT" 
-  } ],
-  "main": "querystring",
-  "dependencies": {
-  },
-  "devDependencies": {
-    "express": "3.x.x",
-    "term-canvas": "0.0.x",
-    "mocha-phantomjs": "2.x.x",
-    "mocha-cloud": "0.1.x",
-    "mocha-cloud-grid-view": "0.0.x",
-    "component-amd": "0.1.x",
-    "deamdify": "0.1.x"
-  },
-  "browserify": {
-    "transform": "deamdify"
-  },
-  "volo": {
-    "dependencies": {
-    }
-  }
+  "version": "0.0.1",
+  "main": "querystring.js",
+  "dependencies": {},
+  "license": "MIT"
 }
